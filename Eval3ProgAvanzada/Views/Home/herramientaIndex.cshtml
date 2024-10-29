@@ -1,0 +1,35 @@
+﻿@page
+@model Eval3ProgAvanzada.Views.Home.herramientaIndexModel
+@{
+    ViewData["Title"] = "Herramientas";
+
+}
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var herramienta in Evaluacion3.Models.herramienta)
+        {
+            <tr>
+                <td>@herramienta.Modelo</td>
+                <td>@herramienta.Marca</td>
+                <td>@herramienta.Estado</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Tool", new { id = herramienta.Id })">Editar</a> |
+                    <a href="@Url.Action("Delete", "Tool", new { id = herramienta.Id })">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create", "Tool")">Agregar Nueva Herramienta</a>
+
