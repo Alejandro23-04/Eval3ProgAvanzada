@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Eval3ProgAvanzada.Models.herramienta>
+﻿@model IEnumerable<Eval3ProgAvanzada.Models.Herramienta>
 @{
     ViewData["Title"] = "Herramientas";
 }
@@ -17,17 +17,16 @@
         @foreach (var herramienta in Model)
         {
             <tr>
-                <td>@herramienta.modelo.Nombre</td>
+                <td>@herramienta.Modelo.Nombre</td>
                 <td>@herramienta.Marca</td>
                 <td>@herramienta.Estado</td>
                 <td>
-                    <a href="@Url.Action("Edit", "herramienta", new { id = herramienta.Id })">Editar</a> |
-                    <a href="@Url.Action("Delete", "herramienta", new { id = herramienta.Id })">Eliminar</a>
+                    <a href="@Url.Action("Edit", "Herramienta", new { id = herramienta.Id })">Editar</a> |
+                    <a href="@Url.Action("Delete", "Herramienta", new { id = herramienta.Id })">Eliminar</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
-<a href="@Url.Action("Create", "herramienta")">Agregar Nueva Herramienta</a>
-
+<a href="@Url.Action("Create", "Herramienta")">Agregar Nueva Herramienta</a>

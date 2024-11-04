@@ -9,10 +9,10 @@ namespace Eval3ProgAvanzada.Models
         public int Id { get; set; }
 
         [Required]
-        public string Nombre { get; set; }
+        public string Nombre { get; set; } = string.Empty;
 
         [ForeignKey("marca")]
         public int marcaId { get; set; }
-        public marca marca { get; set; }
+        public marca marca { get; set; } = new marca();
     }
 }

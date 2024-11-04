@@ -1,19 +1,20 @@
-﻿@model Eval3ProgAvanzada.Models.herramienta
+﻿@model Eval3ProgAvanzada.Models.Herramienta
 @{
-    ViewData["Title"] = "Crear Herramienta";
+    ViewData["Title"] = "Crear herramienta";
 }
 
 <h2>Crear Herramienta</h2>
 
 <form asp-action="Create">
     <div class="form-group">
-        <label asp-for="Nombre" class="control-label"></label>
-        <input asp-for="Nombre" class="form-control" />
-        <span asp-validation-for="Nombre" class="text-danger"></span>
+        <label asp-for="NumeroSerie" class="control-label"></label>
+        <input asp-for="NumeroSerie" class="form-control" />
+        <span asp-validation-for="NumeroSerie" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="modeloId" class="control-label">Modelo</label>
-        <select asp-for="modeloId" class="form-control" asp-items="ViewBag.Modelos"></select>
+        <label asp-for="ModeloId" class="control-label">Modelo</label>
+        <select asp-for="ModeloId" class="form-control" asp-items="ViewBag.Modelos"></select>
+        <span asp-validation-for="ModeloId" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Marca" class="control-label"></label>
@@ -27,6 +28,4 @@
     </div>
     <button type="submit" class="btn btn-primary">Crear</button>
 </form>
-
 <a asp-action="Index">Regresar</a>
-
