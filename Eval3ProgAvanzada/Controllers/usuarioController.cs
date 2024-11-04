@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Eval3ProgAvanzada.Database;
+using Eval3ProgAvanzada.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Eval3ProgAvanzada.Controllers
 {
@@ -13,7 +16,7 @@ namespace Eval3ProgAvanzada.Controllers
 
         public IActionResult Index()
         {
-            var usuarios = _context.Users.ToList();
+            var usuarios = _context.usuarios.ToList();
             return View(usuarios);
         }
 

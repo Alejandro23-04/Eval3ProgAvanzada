@@ -12,6 +12,7 @@ namespace Eval3ProgAvanzada.Database
         public DbSet<herramienta> herramientas { get; set; }
         public DbSet<usuario> usuarios { get; set; }
         public DbSet<movimiento> movimientos { get; set; }
-        public DbSet<asignacion> asignacion { get; set; }
+        public DbSet<asignacion> asignaciones { get; set; }
     }
 }
+

@@ -1,22 +1,31 @@
-﻿using Eval3ProgAvanzada.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Eval3ProgAvanzada.Database;
+using Eval3ProgAvanzada.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Eval3ProgAvanzada.Controllers
 {
     public class modeloController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public modeloController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Create()
         {
-            ViewData["MarcaId"] = new SelectList(_context.marca, "Id", "Nombre");
+            ViewData["MarcaId"] = new SelectList(_context.Marcas, "Id", "Nombre");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,MarcaId")] modelo modelo)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,marcaId")] modelo modelo)
         {
             if (ModelState.IsValid)
             {
@@ -24,7 +33,7 @@ namespace Eval3ProgAvanzada.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MarcaId"] = new SelectList(_context.marca, "Id", "Nombre", modelo.marcaId);
+            ViewData["MarcaId"] = new SelectList(_context.Marcas, "Id", "Nombre", modelo.marcaId);
             return View(modelo);
         }
 
@@ -40,13 +49,13 @@ namespace Eval3ProgAvanzada.Controllers
             {
                 return NotFound();
             }
-            ViewData["MarcaId"] = new SelectList(_context.Marcas, "Id", "Nombre", modelo.MarcaId);
+            ViewData["MarcaId"] = new SelectList(_context.Marcas, "Id", "Nombre", modelo.marcaId);
             return View(modelo);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,MarcaId")] Modelo modelo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,marcaId")] modelo modelo)
         {
             if (id != modelo.Id)
             {
@@ -73,13 +82,14 @@ namespace Eval3ProgAvanzada.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MarcaId"] = new SelectList(_context.Marcas, "Id", "Nombre", modelo.MarcaId);
+            ViewData["MarcaId"] = new SelectList(_context.Marcas, "Id", "Nombre", modelo.marcaId);
             return View(modelo);
         }
 
-        private bool ModeloExists(object id)
+        private bool ModeloExists(int id)
         {
-            throw new NotImplementedException();
+            return _context.Modelos.Any(e => e.Id == id);
         }
     }
 }
+

@@ -1,6 +1,7 @@
 ﻿using Eval3ProgAvanzada.Database;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Eval3ProgAvanzada.Controllers
 {
@@ -15,8 +16,12 @@ namespace Eval3ProgAvanzada.Controllers
 
         public IActionResult Index()
         {
-            var movements = _context.movimientos.Include(m => m.herramientaId).Include(m => m.userId).ToList();
+            var movements = _context.movimientos
+                .Include(m => m.Herramienta)
+                .Include(m => m.usuario)
+                .ToList();
             return View(movements);
         }
     }
 }
+

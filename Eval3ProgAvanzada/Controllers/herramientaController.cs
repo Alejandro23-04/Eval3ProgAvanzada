@@ -1,5 +1,6 @@
 ﻿using Eval3ProgAvanzada.Database;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Eval3ProgAvanzada.Controllers
 {
@@ -14,14 +15,13 @@ namespace Eval3ProgAvanzada.Controllers
 
         public IActionResult Index()
         {
-            var herramientas = _context.Tools.ToList();
-            return (IActionResult)View(herramientas);
+            var herramientas = _context.herramientas.ToList();
+            return View(herramientas);
         }
-
 
         public IActionResult Create()
         {
-            return (IActionResult)View();
+            return View();
         }
 
         [HttpPost]
@@ -32,14 +32,10 @@ namespace Eval3ProgAvanzada.Controllers
             {
                 _context.Add(tool);
                 _context.SaveChanges();
-                return RedirectToActionResult(nameof(Index));
+                return RedirectToAction(nameof(Index));
             }
-            return (IActionResult)View(tool);
-        }
-
-        private IActionResult RedirectToActionResult(string v)
-        {
-            throw new NotImplementedException();
+            return View(tool);
         }
     }
 }
+
