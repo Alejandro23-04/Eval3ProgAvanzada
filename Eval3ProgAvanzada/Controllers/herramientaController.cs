@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace Eval3ProgAvanzada.Controllers
 {
-    public class herramientaController : Controller
+    public class HerramientaController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public herramientaController(ApplicationDbContext context)
+        public HerramientaController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -16,7 +16,7 @@ namespace Eval3ProgAvanzada.Controllers
         public IActionResult Index()
         {
             var herramientas = _context.herramientas.ToList();
-            return View(herramientas);
+            return View("herramientaIndex", herramientas); // Especifica la vista 'herramientaIndex'
         }
 
         public IActionResult Create()
@@ -38,4 +38,3 @@ namespace Eval3ProgAvanzada.Controllers
         }
     }
 }
-
