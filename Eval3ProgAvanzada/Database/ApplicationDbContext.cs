@@ -9,7 +9,7 @@ namespace Eval3ProgAvanzada.Database
 
         public DbSet<marca> Marcas { get; set; }
         public DbSet<modelo> Modelos { get; set; }
-        public DbSet<herramienta> herramientas { get; set; }
+        public DbSet<Herramienta> herramientas { get; set; }
         public DbSet<usuario> usuarios { get; set; }
         public DbSet<movimiento> movimientos { get; set; }
         public DbSet<asignacion> asignaciones { get; set; }
