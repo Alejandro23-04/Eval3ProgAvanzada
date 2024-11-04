@@ -9,6 +9,8 @@ namespace Eval3ProgAvanzada.Database
 {
     public class ApplicationDbContext: System.Data.Entity.DbContext
     {
+        internal readonly object Tools;
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public Microsoft.EntityFrameworkCore.DbSet<marca> Marcas { get; set; }
