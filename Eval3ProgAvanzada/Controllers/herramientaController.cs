@@ -26,7 +26,7 @@ namespace Eval3ProgAvanzada.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(herramienta tool)
+        public IActionResult Create(Models.herramienta tool)
         {
             if (ModelState.IsValid)
             {

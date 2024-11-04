@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection;
 
 namespace Eval3ProgAvanzada.Models
 {
@@ -7,8 +9,9 @@ namespace Eval3ProgAvanzada.Models
         public int Id { get; set; }
 
         [Required]
-        public string Modelo { get; set; }
-
+        [ForeignKey("modelo")]
+        public int modeloId { get; set; }
+        public modelo modelo { get; set; }
         [Required]
         public string Marca { get; set; }
 

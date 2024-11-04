@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Eval3ProgAvanzada.Models
 {
@@ -6,11 +7,14 @@ namespace Eval3ProgAvanzada.Models
     {
         public int Id { get; set; }
 
+
+        [ForeignKey("Herramienta")] 
         public int herramientaId { get; set; }
         public herramienta Herramienta { get; set; }
 
-        public int UserId { get; set; }
-        public usuario Usuario { get; set; }
+        [ForeignKey("Usuario")]
+        public int userId { get; set; }
+        public usuario usuario { get; set; }
 
         [Required]
         public string TipoMovimiento { get; set; } // "Ingreso", "Asignación", "Mantención", "Reingreso"
