@@ -10,7 +10,7 @@ namespace Eval3ProgAvanzada.Models
 
         [ForeignKey("Herramienta")] 
         public int herramientaId { get; set; }
-        public herramienta Herramienta { get; set; }
+        public Herramienta Herramienta { get; set; }
 
         [ForeignKey("Usuario")]
         public int userId { get; set; }
