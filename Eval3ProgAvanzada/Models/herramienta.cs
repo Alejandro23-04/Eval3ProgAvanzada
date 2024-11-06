@@ -11,15 +11,15 @@ namespace Eval3ProgAvanzada.Models
         [ForeignKey("Modelo")]
         public int ModeloId { get; set; }
 
-        public Modelo Modelo { get; set; } = new Modelo();  // Inicialización para evitar valores NULL
+        public Modelo? Modelo { get; set; }  // Inicialización para evitar valores NULL
 
         [Required(ErrorMessage = "La marca es requerida")]
         [StringLength(50, ErrorMessage = "La marca no debe superar los 50 caracteres")]
-        public string Marca { get; set; } = string.Empty;  // Valor predeterminado como cadena vacía
+        public string Marca { get; set; } = string.Empty;  // Cambiar a string para la marca
 
         [Required(ErrorMessage = "El estado es requerido")]
         [RegularExpression("Disponible|En Uso|En Mantención", ErrorMessage = "Estado no válido")]
-        public string Estado { get; set; } = "Disponible";  // Estado predeterminado
+        public string? Estado { get; set; } = "Disponible";  // Estado predeterminado
 
         [Required(ErrorMessage = "El número de serie es requerido")]
         [StringLength(100, ErrorMessage = "El número de serie no debe superar los 100 caracteres")]

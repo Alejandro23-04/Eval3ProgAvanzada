@@ -48,7 +48,8 @@ namespace Eval3ProgAvanzada.Controllers
         // GET: Herramientas/Create
         public IActionResult Create()
         {
-            ViewData["ModeloId"] = new SelectList(_context.Set<Modelo>(), "Id", "Nombre");
+            ViewData["ModeloId"] = new SelectList(_context.Modelos, "Id", "Nombre");
+            ViewData["MarcaId"] = new SelectList(_context.Marcas, "Id", "Nombre");
             return View();
         }
 
@@ -155,14 +156,14 @@ namespace Eval3ProgAvanzada.Controllers
             {
                 _context.Herramientas.Remove(herramienta);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool HerramientaExists(int id)
         {
-          return (_context.Herramientas?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Herramientas?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
