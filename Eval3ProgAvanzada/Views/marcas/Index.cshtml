@@ -1,35 +1,64 @@
 ﻿@model IEnumerable<Eval3ProgAvanzada.Models.marca>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Gestión de Marcas";
 }
 
-<h1>Index</h1>
+<h2 class="text-center" style="color: #007bff; font-weight: bold; margin-top: 20px;">GESTIÓN DE MARCAS</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+<div class="container mt-4" style="border: 1px solid #007bff; padding: 20px; border-radius: 10px;">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <input type="text" id="search-box" class="form-control" placeholder="Buscar marca por nombre" style="border: 1px solid #007bff;">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-dark w-100" id="search-button" style="background-color: #0056b3; border-color: #0056b3;">Buscar</button>
+        </div>
+        <div class="col-md-2 text-right">
+            <a asp-action="Create" class="btn btn-primary w-100" style="background-color: #007bff; border-color: #007bff;">Agregar Marca</a>
+        </div>
+    </div>
+
+    <table class="table table-bordered" style="border-color: #007bff;">
+        <thead style="background-color: #e9f2fd;">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-info" title="Editar" style="background-color: #17a2b8; color: white;">Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-secondary" title="Detalles" style="background-color: #6c757d; color: white;">Detalles</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Eliminar" style="background-color: #dc3545; color: white;">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#search-button').on('click', function () {
+                var query = $('#search-box').val();
+                $.ajax({
+                    url: '@Url.Action("Search", "Marcas")',
+                    type: 'GET',
+                    data: { search: query },
+                    success: function (result) {
+                        $('#table-body').html(result);
+                    },
+                    error: function () {
+                        alert('Error al buscar marcas.');
+                    }
+                });
+            });
+        });
+    </script>
 }
-    </tbody>
-</table>
