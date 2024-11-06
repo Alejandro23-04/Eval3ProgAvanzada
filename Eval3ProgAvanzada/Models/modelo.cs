@@ -13,6 +13,6 @@ namespace Eval3ProgAvanzada.Models
 
         [ForeignKey("marca")]
         public int marcaId { get; set; }
-        public marca marca { get; set; } = new marca();
+        public marca? marca { get; set; }
     }
 }
