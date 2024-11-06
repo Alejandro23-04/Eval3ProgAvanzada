@@ -1,0 +1,46 @@
+﻿@model Eval3ProgAvanzada.Models.asignacion
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>asignacion</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="herramientaId" class="control-label"></label>
+                <select asp-for="herramientaId" class ="form-control" asp-items="ViewBag.herramientaId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="usuarioId" class="control-label"></label>
+                <select asp-for="usuarioId" class ="form-control" asp-items="ViewBag.usuarioId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaAsignacion" class="control-label"></label>
+                <input asp-for="FechaAsignacion" class="form-control" />
+                <span asp-validation-for="FechaAsignacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaDevolucion" class="control-label"></label>
+                <input asp-for="FechaDevolucion" class="form-control" />
+                <span asp-validation-for="FechaDevolucion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
