@@ -1,59 +1,76 @@
 ﻿@model IEnumerable<Eval3ProgAvanzada.Models.Herramienta>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Gestión de Herramientas";
 }
 
-<h1>Index</h1>
+<h2 class="text-center" style="color: #007bff; font-weight: bold; margin-top: 20px; padding-bottom: 10px;">GESTIÓN DE HERRAMIENTAS</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Modelo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Marca)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumeroSerie)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CantidadTotal)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Modelo.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marca)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumeroSerie)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CantidadTotal)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+<div class="container mt-4" style="border: 1px solid #007bff; padding: 20px; border-radius: 10px;">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <input type="text" id="search-box" class="form-control" placeholder="Ingrese número de serie o nombre" style="border: 1px solid #007bff;">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-dark w-100" id="search-button" style="background-color: #0056b3; border-color: #0056b3;"><i class="fa fa-search"></i> Buscar</button>
+        </div>
+        <div class="col-md-2 text-right">
+            <a asp-action="Create" class="btn btn-primary w-100" style="background-color: #007bff; border-color: #007bff;">Agregar Herramientas</a>
+        </div>
+    </div>
+
+    <table class="table table-bordered" style="border-color: #007bff;">
+        <thead style="background-color: #e9f2fd;">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.NumeroSerie)</th>
+                <th>@Html.DisplayNameFor(model => model.Modelo)</th>
+                <th>@Html.DisplayNameFor(model => model.Marca)</th>
+                <th>@Html.DisplayNameFor(model => model.Estado)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.NumeroSerie)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Modelo.Nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Marca)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                    <td>
+                        <a class="btn btn-sm btn-secondary" title="Asignar a usuario" style="background-color: #0056b3; color: white;">
+                            <i class="fa fa-user"></i>
+                        </a>
+                        <a class="btn btn-sm btn-warning" title="Enviar a mantenimiento" style="background-color: #f0ad4e; color: white;">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-info" title="Editar" style="background-color: #17a2b8; color: white;">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#search-button').on('click', function () {
+                var query = $('#search-box').val();
+                $.ajax({
+                    url: '@Url.Action("Search", "Herramientas")',
+                    type: 'GET',
+                    data: { search: query },
+                    success: function (result) {
+                        $('#table-body').html(result);
+                    },
+                    error: function () {
+                        alert('Error al buscar herramientas.');
+                    }
+                });
+            });
+        });
+    </script>
 }
-    </tbody>
-</table>
