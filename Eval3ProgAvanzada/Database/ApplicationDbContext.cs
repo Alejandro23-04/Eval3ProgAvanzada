@@ -9,10 +9,15 @@ namespace Eval3ProgAvanzada.Database
 
         public DbSet<marca> Marcas { get; set; }
         public DbSet<modelo> Modelos { get; set; }
-        public DbSet<Herramienta> herramientas { get; set; }
-        public DbSet<usuario> usuarios { get; set; }
-        public DbSet<movimiento> movimientos { get; set; }
-        public DbSet<asignacion> asignaciones { get; set; }
+        public DbSet<Herramienta> Herramientas { get; set; }
+        public DbSet<usuario> Usuarios { get; set; }
+        public DbSet<movimiento> Movimientos { get; set; }
+        public DbSet<asignacion> Asignaciones { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
-
