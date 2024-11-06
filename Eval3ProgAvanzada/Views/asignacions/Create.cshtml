@@ -1,46 +1,50 @@
 ﻿@model Eval3ProgAvanzada.Models.asignacion
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Asignación";
 }
 
-<h1>Create</h1>
+<h2 class="text-center" style="color: #007bff; font-weight: bold; margin-top: 20px;">Crear Asignación</h2>
+<hr style="border: 1px solid #007bff;">
 
-<h4>asignacion</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="herramientaId" class="control-label"></label>
-                <select asp-for="herramientaId" class ="form-control" asp-items="ViewBag.herramientaId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="usuarioId" class="control-label"></label>
-                <select asp-for="usuarioId" class ="form-control" asp-items="ViewBag.usuarioId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="FechaAsignacion" class="control-label"></label>
-                <input asp-for="FechaAsignacion" class="form-control" />
-                <span asp-validation-for="FechaAsignacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FechaDevolucion" class="control-label"></label>
-                <input asp-for="FechaDevolucion" class="form-control" />
-                <span asp-validation-for="FechaDevolucion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="container mt-4" style="border: 1px solid #007bff; padding: 20px; border-radius: 10px; background-color: #f9f9f9; max-width: 600px;">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="form-group mb-4">
+            <label asp-for="herramientaId" class="form-label" style="font-weight: bold;">Herramienta</label>
+            <select asp-for="herramientaId" class="form-control" asp-items="ViewBag.herramientaId" style="border: 1px solid #007bff;"></select>
+        </div>
+
+        <div class="form-group mb-4">
+            <label asp-for="usuarioId" class="form-label" style="font-weight: bold;">Correo Usuario</label>
+            <select asp-for="usuarioId" class="form-control" asp-items="ViewBag.usuarioId" style="border: 1px solid #007bff;"></select>
+        </div>
+
+        <div class="form-group mb-4">
+            <label asp-for="FechaAsignacion" class="form-label" style="font-weight: bold;"></label>
+            <input asp-for="FechaAsignacion" class="form-control" style="border: 1px solid #007bff;" />
+            <span asp-validation-for="FechaAsignacion" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-4">
+            <label asp-for="FechaDevolucion" class="form-label" style="font-weight: bold;"></label>
+            <input asp-for="FechaDevolucion" class="form-control" style="border: 1px solid #007bff;" />
+            <span asp-validation-for="FechaDevolucion" class="text-danger"></span>
+        </div>
+
+        <div class="form-group text-center">
+            <input type="submit" value="Crear" class="btn btn-primary" style="background-color: #007bff; border-color: #007bff; padding: 10px 20px; font-weight: bold;" />
+        </div>
+    </form>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="mt-4 text-center">
+    <a asp-action="Index" class="btn btn-link" style="color: #007bff; font-weight: bold;">Volver a la lista</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
